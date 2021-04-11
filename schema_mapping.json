@@ -1,0 +1,2508 @@
+{
+    "processingHandlerChain": {
+      "flat_product": {
+        "name": "flat_product",
+        "handler": "com.walmart.labs.search.data.handler.TransformationHandler",
+        "properties": {
+          "target_name": "flat_product",
+          "namespace": "com.walmart.labs.search.data.avro"
+        },
+        "children": [
+  {
+            "name": "HOUSE_KEEPING_FIELD",
+            "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+            "properties": {
+              "target_name": "header_schema_version",
+              "doc": {
+                "id": -99
+              }
+            }
+          },
+          {
+            "name": "HOUSE_KEEPING_FIELD",
+            "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+            "properties": {
+              "target_name": "header_info",
+              "doc": {
+                "id": -98
+              }
+            }
+          },
+          {
+            "name": "HOUSE_KEEPING_FIELD",
+            "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+            "properties": {
+              "target_name": "record_type",
+              "doc": {
+                "id": -7
+              }
+            }
+          },
+          {
+            "name": "HOUSE_KEEPING_FIELD",
+            "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+            "properties": {
+              "target_name": "pgls_num_reviews",
+              "doc": {
+                "id": -6
+              }
+            }
+          },
+          {
+            "name": "HOUSE_KEEPING_FIELD",
+            "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+            "properties": {
+              "target_name": "pgls_customer_rating",
+              "doc": {
+                "id": -5
+              }
+            }
+          },
+          {
+            "name": "HOUSE_KEEPING_FIELD",
+            "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+            "properties": {
+              "target_name": "is_seller_premium",
+              "doc": {
+                "id": -4
+              }
+            }
+          },
+          {
+            "name": "HOUSE_KEEPING_FIELD",
+            "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+            "properties": {
+              "target_name": "is_record_valid",
+              "doc": {
+                "id": -3
+              }
+            }
+          },
+          {
+            "name": "HOUSE_KEEPING_FIELD",
+            "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+            "properties": {
+              "target_name": "record_valid_reason",
+              "doc": {
+                "id": -2
+              }
+            }
+          },
+          {
+            "name": "HOUSE_KEEPING_FIELD",
+            "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+            "properties": {
+              "target_name": "record_stock_status_message",
+              "doc": {
+                "id": -1
+              }
+            }
+          },
+          {
+            "name": "product_id",
+            "handler": "com.walmart.labs.search.data.handler.impl.CassandraColumnStringToStringHandler",
+            "properties": {
+              "target_name": "product_id",
+              "doc": {
+                "id": 1
+              }
+            }
+          },
+          {
+            "name": "external_source_id",
+            "handler": "com.walmart.labs.search.data.handler.impl.CassandraColumnStringToStringHandler",
+            "properties": {
+              "target_name": "item_id",
+              "doc": {
+                "id": 2
+              }
+            }
+          },
+          {
+            "name": "abstract_or_primary_product_id",
+            "handler": "com.walmart.labs.search.data.handler.impl.CassandraColumnStringToStringHandler",
+            "properties": {
+              "target_name": "abstract_or_primary_product_id",
+              "doc": {
+                "id": 3,
+                "DEPRECATED": true
+              }
+            }
+          },
+          {
+            "name": "gtin",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnStringToStringHandler_StandardUPC",
+            "properties": {
+              "target_name": "standard_upc",
+              "doc": {
+                "id": 4
+              }
+            }
+          },
+          {
+            "name": "wupc",
+            "handler": "com.walmart.labs.search.data.handler.impl.CassandraColumnStringToStringHandler",
+            "properties": {
+              "target_name": "upc",
+              "doc": {
+                "id": 5
+              }
+            }
+          },
+          {
+            "name": "product_class_type",
+            "handler": "com.walmart.labs.search.data.handler.impl.CassandraColumnStringToStringHandler",
+            "properties": {
+              "target_name": "product_class_type",
+              "doc": {
+                "id": 7
+              }
+            }
+          },
+ {
+            "name": "ims_store_availability",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToMapOfArraysHandler_IMSBase",
+            "properties": {
+              "target_name": "ims_store_availability",
+              "handlerConfigs": {
+                "store_programs": [
+                  "SFS",
+                  "PUT"
+                ]
+              }
+            },
+            "children": [
+              {
+                "name": "ims_store_availability",
+                "handler": "com.walmart.labs.search.data.handler.impl.custom.IMSMapOfStoreProgramToStoreIdsHandler",
+                "properties": {
+                  "target_name": "store_availability",
+                  "doc": {
+                    "id": 8
+                  },
+                  "handlerConfigs": {
+                    "target_store_program": "PUT"
+                  }
+                }
+              },
+              {
+                "name": "ims_store_availability",
+                "handler": "com.walmart.labs.search.data.handler.impl.custom.IMSMapOfStoreProgramToStoreIdsHandler",
+                "properties": {
+                  "target_name": "sfs_ids",
+                  "doc": {
+                    "id": 216
+                  },
+                  "handlerConfigs": {
+                    "target_store_program": "SFS"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "itemstore_put_eligibility",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToArrayHandler_StorePutEligibility",
+            "properties": {
+              "target_name": "store_put_eligible",
+              "doc": {
+                "id": 141
+              }
+            }
+          },
+  {
+            "name": "product_sales_json",
+            "handler": "com.walmart.labs.search.data.handler.impl.CassandraColumnJsonStringToMapHandler",
+            "children": [
+              {
+                "name": "amt",
+                "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonTextNodeToStringHandler_ItemRank",
+                "properties": {
+                  "target_name": "item_rank",
+                  "doc": {
+                    "id": 9
+                  }
+                }
+              },
+              {
+                "name": "qty",
+                "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonTextNodeToStringHandler_ItemBSRank",
+                "properties": {
+                  "target_name": "item_bs_rank",
+                  "doc": {
+                    "id": 10
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "rollup_unified_json",
+            "handler": "com.walmart.labs.search.data.handler.impl.CassandraColumnJsonStringToBooleanHandler",
+            "properties": {
+              "target_name": "glass_enabled",
+              "doc": {
+                "id": 182
+              }
+            }
+          },
+ {
+            "name": "rollup_unified_json",
+            "handler": "com.walmart.labs.search.data.handler.impl.CassandraColumnJsonStringToMapHandler",
+            "children": [
+              {
+                "name": "productPublishStatus",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "pgls_product_publish_status",
+                  "doc": {
+                    "id": 183
+                  }
+                }
+              },
+              {
+                "name": "productListingStatus",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "pgls_product_listing_status",
+                  "doc": {
+                    "id": 220
+                  }
+                }
+              },
+              {
+                "name": "itemWrapper.pricing.minPrice.currencyAmount",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonNumericNodeDoubleToStringHandler",
+                "properties": {
+                  "target_name": "pgls_variant_min_price",
+                  "doc": {
+                    "id": 184
+                  }
+                }
+              },
+              {
+                "name": "itemWrapper.pricing.maxPrice.currencyAmount",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonNumericNodeDoubleToStringHandler",
+                "properties": {
+                  "target_name": "pgls_variant_max_price",
+                  "doc": {
+                    "id": 185
+                  }
+                }
+              },
+              {
+                "name": "itemWrapper.pricing.minPrice.currencyAmount",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonNumericNodeDoubleToStringHandler",
+                "properties": {
+                  "target_name": "pgls_min_price",
+                  "doc": {
+                    "id": 218
+                  }
+                }
+              },
+              {
+                "name": "itemWrapper.pricing.maxPrice.currencyAmount",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonNumericNodeDoubleToStringHandler",
+                "properties": {
+                  "target_name": "pgls_max_price",
+                  "doc": {
+                    "id": 219
+                  }
+                }
+              },
+              {
+                "name": "itemWrapper.pricing.currentPrice.currentValue.currencyAmount",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonNumericNodeDoubleToStringHandler",
+                "properties": {
+                  "target_name": "pgls_curr_item_price",
+                  "doc": {
+                    "id": 197
+                  }
+                }
+              },
+              {
+                "name": "itemWrapper.pricing.priceDisplayCodes.isRollback",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonBooleanNodeToStringHandler",
+                "properties": {
+                  "target_name": "pgls_rollback_item",
+                  "doc": {
+                    "id": 206
+                  }
+                }
+              },
+              {
+                "name": "itemWrapper.pricing.priceDisplayCodes.isClearance",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonBooleanNodeToStringHandler",
+                "properties": {
+                  "target_name": "pgls_clearance_item",
+                  "doc": {
+                    "id": 207
+                  }
+                }
+              },
+              {
+                "name": "productListingScope",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "pgls_domain_buy_code",
+                  "doc": {
+                    "id": 214
+                  }
+                }
+              },
+              {
+                "name": "itemWrapper.nodeFulfillmentDetails",
+                "handler": "com.walmart.labs.search.data.handler.impl.custom.GlassRollupHandler.JsonArrayNodeToStringHandler_PglsItemOnlineAvailability",
+                "properties": {
+                  "target_name": "pgls_availability_status",
+                  "doc": {
+                    "id": 190
+                  }
+                }
+              },
+              {
+                "name": "itemWrapper",
+                "handler": "com.walmart.labs.search.data.handler.impl.custom.GlassRollupHandler.GlassRollupItemWrapperJsonNodeBaseHandler",
+                "children": [
+                  {
+                    "name": "nodeFulfillmentDetails",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.GlassRollupHandler.JsonArrayNodeToStringHandler_PglsGeoEligible",
+                    "properties": {
+                      "target_name": "pgls_geo_eligible",
+                      "doc": {
+                        "id": 186
+                      }
+                    }
+                  },
+                  {
+                    "name": "nodeFulfillmentDetails.clusters",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.GlassRollupHandler.JsonArrayNodeToArrayHandler_PglsClusterIDArrays",
+                    "properties": {
+                      "target_name": "pgls_cluster_ids",
+                      "doc": {
+                        "id": 187
+                      }
+                    }
+                  },
+                  {
+                    "name": "nodeFulfillmentDetails.clusters",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.GlassRollupHandler.JsonArrayNodeToArrayHandler_PglsNextDayClusterIdsArray",
+                    "properties": {
+                      "target_name": "pgls_next_day_cluster_ids",
+                      "doc": {
+                        "id": 188
+                      }
+                    }
+                  },
+                  {
+                    "name": "nodeFulfillmentDetails.clusters",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.GlassRollupHandler.JsonArrayNodeToStringHandler_PglsNextDayEligible",
+                    "properties": {
+                      "target_name": "pgls_next_day_eligible",
+                      "doc": {
+                        "id": 189
+                      }
+                    }
+                  },
+                  {
+                    "name": "nodeFulfillmentDetails",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.GlassRollupHandler.JsonArrayNodeToStringHandler_PglsFCDefaultAvailability",
+                    "properties": {
+                      "target_name": "pgls_default_availability_status",
+                      "doc": {
+                        "id": 191
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "itemWrapper.seller.walmartOwned",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonBooleanNodeToStringHandler",
+                "properties": {
+                  "target_name": "pgls_is_walmart_owned",
+                  "doc": {
+                    "id": 221
+                  }
+                }
+              },
+              {
+                "name": "itemWrapper.seller.sellerType",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToArrayHandler",
+                "properties": {
+                  "target_name": "pgls_seller_type",
+                  "doc": {
+                    "id": 222
+                  }
+                }
+              },
+              {
+                "name": "pglsRetailerType",
+                "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonTextNodeToArrayHandler_PglsRetailerType",
+                "properties": {
+                  "target_name": "pgls_retailer_type",
+                  "doc": {
+                    "id": 223
+                  }
+                }
+              }
+            ]
+          },
+ {
+            "name": "product_rollup_json",
+            "handler": "com.walmart.labs.search.data.handler.impl.CassandraColumnJsonStringToBooleanHandler",
+            "properties": {
+              "target_name": "usgm_enabled",
+              "doc": {
+                "id": 173
+              }
+            }
+          },
+          {
+            "name": "product_rollup_json",
+            "handler": "com.walmart.labs.search.data.handler.impl.CassandraColumnJsonStringToMapHandler",
+            "vertical_specific": true,
+            "2": {
+              "vertical_id": "2",
+              "source_name": "product_rollup_vertical_ghs_json"
+            },
+            "children": [
+              {
+                "name": "productPublishStatus",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "product_publish_status",
+                  "doc": {
+                    "id": 6
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.marketAttributes.align_channel_price.value",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "align_channel_price",
+                  "doc": {
+                    "id": 11
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.marketAttributes.availability_msg_flag.value",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "availability_msg_flag",
+                  "doc": {
+                    "id": 12
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.partnerId",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "partner_id",
+                  "doc": {
+                    "id": 13
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.sellerId",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "pangaea_seller_id",
+                  "doc": {
+                    "id": 14
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.offerId.USSellerId",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonNumericNodeLongToStringHandler",
+                "properties": {
+                  "target_name": "mp_seller_id",
+                  "doc": {
+                    "id": 15
+                  }
+                }
+              },
+              {
+                "name": "primarySeller.partnerDisplayName",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "mp_seller_name",
+                  "doc": {
+                    "id": 16
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.offerAttributes.is_preorder.value",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "is_preorder",
+                  "doc": {
+                    "id": 17
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.streetDate",
+                "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonNumericNodeToStringHandler_StreetDate",
+                "properties": {
+                  "target_name": "street_date",
+                  "doc": {
+                    "id": 18
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.streetDate",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonNumericNodeLongToStringHandler",
+                "properties": {
+                  "target_name": "street_date_epoch",
+                  "doc": {
+                    "id": 171
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.offerAttributes.street_date_type.value",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "street_date_type",
+                  "doc": {
+                    "id": 172
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.offerAttributes.wm_item_num.value",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "wm_item_num",
+                  "doc": {
+                    "id": 19
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.marketAttributes.item_master_created_dtm.value",
+                "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonTextNodeToStringHandler_CreatedDTM",
+                "properties": {
+                  "target_name": "created_dtm",
+                  "doc": {
+                    "id": 20
+                  }
+                }
+              },
+              {
+                "name": "isPrimaryOfferPUTEligible",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonBooleanNodeToStringHandler",
+                "properties": {
+                  "target_name": "is_put_eligible",
+                  "doc": {
+                    "id": 21
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.offerType",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "domain_buy_code",
+                  "doc": {
+                    "id": 22
+                  }
+                }
+              },
+              {
+                "name": "isShippingPassEligible",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonBooleanNodeToStringHandler",
+                "properties": {
+                  "target_name": "is_shipping_pass_eligible",
+                  "doc": {
+                    "id": 23
+                  }
+                }
+              },
+              {
+                "name": "isPickupDiscountEligible",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonBooleanNodeToStringHandler",
+                "properties": {
+                  "target_name": "is_pickup_discount_eligible",
+                  "doc": {
+                    "id": 119
+                  }
+                }
+              },
+              {
+                "name": "isGiftingEligible",
+                "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonBooleanNodeToStringHandler_GiftingEligible",
+                "properties": {
+                  "target_name": "gifting_eligible",
+                  "doc": {
+                    "id": 215
+                  }
+                }
+              },
+              {
+                "name": "storeFrontBuyingOptions",
+                "handler": "com.walmart.labs.search.data.handler.impl.custom.StoreFrontBuyingOptionsJsonNodeHandler",
+                "children": [
+                  {
+                    "name": "minPrice.currencyAmount",
+                    "handler": "com.walmart.labs.search.data.handler.impl.JsonNumericNodeDoubleToStringHandler",
+                    "properties": {
+                      "target_name": "variant_min_price",
+                      "doc": {
+                        "id": 24
+                      }
+                    }
+                  },
+                  {
+                    "name": "maxPrice.currencyAmount",
+                    "handler": "com.walmart.labs.search.data.handler.impl.JsonNumericNodeDoubleToStringHandler",
+                    "properties": {
+                      "target_name": "variant_max_price",
+                      "doc": {
+                        "id": 25
+                      }
+                    }
+                  },
+                  {
+                    "name": "itemPrice",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonNumericNodeToStringHandler_CurrentItemPrice",
+                    "properties": {
+                      "target_name": "curr_item_price",
+                      "doc": {
+                        "id": 26
+                      }
+                    }
+                  },
+                  {
+                    "name": "quantity",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonNumericNodeToStringHandler_Quantity",
+                    "properties": {
+                      "target_name": "item_quantity",
+                      "doc": {
+                        "id": 159
+                      }
+                    }
+                  },
+                  {
+                    "name": "availabilityStatus",
+                    "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                    "properties": {
+                      "target_name": "availability_status",
+                      "doc": {
+                        "id": 27
+                      }
+                    }
+                  },
+                  {
+                    "name": "priceDisplayCodes",
+                    "handler": "com.walmart.labs.search.data.handler.impl.JsonObjectNodeToMapHandler",
+                    "children": [
+                      {
+                        "name": "isRollback",
+                        "handler": "com.walmart.labs.search.data.handler.impl.JsonBooleanNodeToStringHandler",
+                        "properties": {
+                          "target_name": "is_rollback",
+                          "doc": {
+                            "id": 28
+                          }
+                        }
+                      },
+                      {
+                        "name": "isClearance",
+                        "handler": "com.walmart.labs.search.data.handler.impl.JsonBooleanNodeToStringHandler",
+                        "properties": {
+                          "target_name": "is_clearance",
+                          "doc": {
+                            "id": 29
+                          }
+                        }
+                      },
+                      {
+                        "name": "isReducedPrice",
+                        "handler": "com.walmart.labs.search.data.handler.impl.JsonBooleanNodeToStringHandler",
+                        "properties": {
+                          "target_name": "is_reduced_price",
+                          "doc": {
+                            "id": 30
+                          }
+                        }
+                      },
+                      {
+                        "name": "submapType",
+                        "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                        "properties": {
+                          "target_name": "submap_type",
+                          "doc": {
+                            "id": 31
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "offerFulfillmentOptionWrappers",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonArrayNodeToArrayHandler_OfferFulfillmentOptions",
+                    "properties": {
+                      "target_name": "fulfillment_options",
+                      "doc": {
+                        "id": 32
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "primaryOffer.marketAttributes.only_at_walmart.value",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToBooleanStringHandler",
+                "properties": {
+                  "target_name": "is_only_at_walmart",
+                  "doc": {
+                    "id": 33
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.offerId.offerId",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "offer_id",
+                  "doc": {
+                    "id": 124
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.offerId.USItemId",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonNumericNodeLongToStringHandler",
+                "properties": {
+                  "target_name": "us_item_id",
+                  "doc": {
+                    "id": 125
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.offerAttributes.min_item_count_per_order.value",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "min_item_count_per_order",
+                  "doc": {
+                    "id": 126
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.marketAttributes.vudu_content_id.value",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "vudu_content_id",
+                  "doc": {
+                    "id": 127
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.marketAttributes.synopsis.value",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "synopsis",
+                  "doc": {
+                    "id": 128
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.marketAttributes.other_special_feature.value",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "other_special_feature",
+                  "doc": {
+                    "id": 129
+                  }
+                }
+              },
+              {
+                "name": "primaryOffer.offerAttributes.snapEligible.value",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonBooleanNodeToStringHandler",
+                "properties": {
+                  "target_name": "snap_eligible",
+                  "doc": {
+                    "id": 138
+                  }
+                }
+              },
+              {
+                "name": "shippingSlas",
+                "handler": "com.walmart.labs.search.data.handler.impl.custom.ShippingSlaDetailsJsonNodeHandler",
+                "children": [
+                  {
+                    "name": "slaTiers",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonArrayNodeToStringHandler_TwoDayEligible",
+                    "properties": {
+                      "target_name": "is_two_day_shipping_eligible",
+                      "doc": {
+                        "id": 109
+                      }
+                    }
+                  },
+                  {
+                    "name": "fulfillmentOffer.fulfillmentEligibilities.fulfillmentOptions.geoItemClassification",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonArrayNodeToStringHandler_GeoEligible",
+                    "properties": {
+                      "target_name": "geo_eligible",
+                      "doc": {
+                        "id": 134
+                      }
+                    }
+                  },
+                  {
+                    "name": "fulfillmentOffer.fulfillmentEligibilities.fulfillmentOptions.defaultAvailabilityStatus",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonArrayNodeToStringHandler_FCDefaultAvailability",
+                    "properties": {
+                      "target_name": "default_availability_status",
+                      "doc": {
+                        "id": 135
+                      }
+                    }
+                  },
+                  {
+                    "name": "fulfillmentOffer.fulfillmentEligibilities.fulfillmentOptions.availableClusters",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonArrayNodeToArrayHandler_ClusterIDArrays",
+                    "properties": {
+                      "target_name": "cluster_ids",
+                      "doc": {
+                        "id": 139
+                      }
+                    }
+                  },
+                  {
+                    "name": "fulfillmentOffer.fulfillmentEligibilities.fulfillmentOptions.shipping",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonArrayNodeToArrayHandler_NextDayClusterIdsArray",
+                    "properties": {
+                      "target_name": "next_day_cluster_ids",
+                      "doc": {
+                        "id": 162
+                      }
+                    }
+                  },
+                  {
+                    "name": "slaTiers",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.JsonArrayNodeToStringHandler_NextDayEligible",
+                    "properties": {
+                      "target_name": "next_day_eligible",
+                      "doc": {
+                        "id": 163
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+ {
+            "name": "product_facets_json",
+            "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFCassandraColumnPCSAttributeHandler",
+            "children": [
+              {
+                "name": "pcs_attributes",
+                "handler": "com.walmart.labs.search.data.handler.impl.StringToStringHandler",
+                "properties": {
+                  "target_name": "pcs_attributes",
+                  "doc": {
+                    "id": 40
+                  }
+                }
+              },
+              {
+                "name": "pgls_pcs_attributes",
+                "handler": "com.walmart.labs.search.data.handler.impl.StringToStringHandler",
+                "properties": {
+                  "target_name": "pgls_pcs_attributes",
+                  "doc": {
+                    "id": 201
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "product_facets_json",
+            "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFCassandraColumnVariantPCSAttributeHandler",
+            "properties": {
+              "target_name": "variant_pcs_attributes",
+              "doc": {
+                "id": 160
+              }
+            }
+          },
+          {
+            "name": "ramp_r2d2_json",
+            "handler": "com.walmart.labs.search.data.handler.impl.CassandraColumnJsonStringToMapHandler",
+            "children": [
+              {
+                "name": "attribute_values",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonObjectNodeToMapHandler",
+                "children": [
+                  {
+                    "name": "values",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToArrayHandler_AllPathId",
+                    "properties": {
+                      "target_name": "path",
+                      "doc": {
+                        "id": 165
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+ {
+            "name": "product_qarth_json",
+            "handler": "com.walmart.labs.search.data.handler.impl.CassandraColumnJsonStringToMapHandler",
+            "children": [
+  {
+                "name": "assets",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonObjectNodeToMapHandler",
+                "children": [
+                  {
+                    "name": "product_image_url",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFAssetsJsonNodeToStringHandler_ProductImageUrl",
+                    "properties": {
+                      "target_name": "product_image_url",
+                      "doc": {
+                        "id": 34
+                      }
+                    }
+                  },
+                  {
+                    "name": "swatch_image_url",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFAssetsJsonNodeToStringHandler_SwatchImageUrl",
+                    "properties": {
+                      "target_name": "swatch_image_url",
+                      "doc": {
+                        "id": 210
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "primary_product_id",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "primary_product_id",
+                  "doc": {
+                    "id": 120
+                  }
+                }
+              },
+              {
+                "name": "primary_product_id",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "primary_var_attr",
+                  "doc": {
+                    "id": 170
+                  }
+                }
+              },
+              {
+                "name": "primary_product_id",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "pgls_primary_var_attr",
+                  "doc": {
+                    "id": 192
+                  }
+                }
+              },
+              {
+                "name": "abstract_product_id",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                "properties": {
+                  "target_name": "abstract_product_id",
+                  "doc": {
+                    "id": 121
+                  }
+                }
+              },
+              {
+                "name": "HOUSE_KEEPING_FIELD",
+                "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+                "properties": {
+                  "target_name": "is_primary_variant_valid",
+                  "doc": {
+                    "id": 122
+                  }
+                }
+              },
+              {
+                "name": "HOUSE_KEEPING_FIELD",
+                "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+                "properties": {
+                  "target_name": "is_error_fetching_primary_variant",
+                  "doc": {
+                    "id": 217
+                  }
+                }
+              },
+              {
+                "name": "HOUSE_KEEPING_FIELD",
+                "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+                "properties": {
+                  "target_name": "online_availability_percentage",
+                  "doc": {
+                    "id": 140
+                  }
+                }
+              },
+              {
+                "name": "HOUSE_KEEPING_FIELD",
+                "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+                "properties": {
+                  "target_name": "pgls_online_availability_percentage",
+                  "doc": {
+                    "id": 193
+                  }
+                }
+              },
+              {
+                "name": "HOUSE_KEEPING_FIELD",
+                "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+                "properties": {
+                  "target_name": "newUSItemID",
+                  "doc": {
+                    "id": 147
+                  }
+                }
+              },
+              {
+                "name": "HOUSE_KEEPING_FIELD",
+                "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+                "properties": {
+                  "target_name": "newTitle",
+                  "doc": {
+                    "id": 148
+                  }
+                }
+              },
+
+              {
+                "name": "variant_summary",
+                "handler": "com.walmart.labs.search.data.handler.impl.pcf.variant.PCFVariantSummaryNodeHandler_VariantItemCount",
+                "properties": {
+                  "target_name": "variant_items_num",
+                  "doc": {
+                    "id": 35
+                  }
+                }
+              },
+              {
+                "name": "variant_summary",
+                "handler": "com.walmart.labs.search.data.handler.impl.pcf.variant.PCFVariantSummaryNodeHandler_VariantItemCount",
+                "properties": {
+                  "target_name": "pgls_variant_items_num",
+                  "doc": {
+                    "id": 194
+                  }
+                }
+              },
+              {
+                "name": "variant_summary",
+                "handler": "com.walmart.labs.search.data.handler.impl.pcf.variant.PCFVariantSummaryNodeHandler_VariantItemIds",
+                "properties": {
+                  "target_name": "variant_items_ids",
+                  "doc": {
+                    "id": 36
+                  }
+                }
+              },
+              {
+                "name": "variant_summary",
+                "handler": "com.walmart.labs.search.data.handler.impl.pcf.variant.PCFVariantSummaryNodeHandler_VariantItemIds",
+                "properties": {
+                  "target_name": "pgls_variant_items_ids",
+                  "doc": {
+                    "id": 195
+                  }
+                }
+              },
+              {
+                "name": "variant_summary",
+                "handler": "com.walmart.labs.search.data.handler.impl.pcf.variant.PCFVariantSummaryNodeHandler_VariantItemIds",
+                "properties": {
+                  "target_name": "variant_items_ids_full",
+                  "doc": {
+                    "id": 137
+                  }
+                }
+              },
+              {
+                "name": "variant_summary",
+                "handler": "com.walmart.labs.search.data.handler.impl.pcf.variant.PCFVariantSummaryNodeHandler_VariantProductIds",
+                "properties": {
+                  "target_name": "variant_product_ids",
+                  "doc": {
+                    "id": 37
+                  }
+                }
+              },
+              {
+                "name": "variant_summary",
+                "handler": "com.walmart.labs.search.data.handler.impl.pcf.variant.PCFVariantSummaryNodeHandler_VariantItemProductIds",
+                "properties": {
+                  "target_name": "variant_item_product_ids",
+                  "doc": {
+                    "id": 169
+                  }
+                }
+              },
+              {
+                "name": "variant_summary",
+                "handler": "com.walmart.labs.search.data.handler.impl.pcf.variant.PCFVariantSummaryNodeHandler_VariantAttributes",
+                "properties": {
+                  "target_name": "variant_attributes",
+                  "doc": {
+                    "id": 38
+                  }
+                }
+              },
+              {
+                "name": "variant_summary",
+                "handler": "com.walmart.labs.search.data.handler.impl.pcf.variant.PCFVariantSummaryNodeHandler_VariantAttributesV2",
+                "properties": {
+                  "target_name": "variant_attributes_v2",
+                  "doc": {
+                    "id": 110
+                  }
+                }
+              },
+              {
+                "name": "variant_summary",
+                "handler": "com.walmart.labs.search.data.handler.impl.pcf.variant.PCFVariantSummaryNodeHandler_VariantAttributesV2",
+                "properties": {
+                  "target_name": "pgls_variant_attributes_v2",
+                  "doc": {
+                    "id": 196
+                  }
+                }
+              },
+              {
+                "name": "variant_summary",
+                "handler": "com.walmart.labs.search.data.handler.impl.custom.VariantVirtualPackCheckHandler",
+                "properties": {
+                  "target_name": "is_virtual_pack",
+                  "doc": {
+                    "id": 146
+                  }
+                }
+              },
+              {
+                "name": "variant_summary",
+                "handler": "com.walmart.labs.search.data.handler.impl.pcf.variant.PCFVariantSummaryNodeHandler_VariantAttributesND",
+                "properties": {
+                  "target_name": "next_day_var_attr",
+                  "doc": {
+                    "id": 164
+                  }
+                }
+              },
+              {
+                "name": "variant_metadata_normalized",
+                "handler": "com.walmart.labs.search.data.handler.impl.pcf.variant.PCFVariantSummaryNodeHandler_VariantMetadata",
+                "properties": {
+                  "target_name": "variant_metadata",
+                  "doc": {
+                    "id": 111
+                  }
+                }
+              },
+              {
+                "name": "variant_metadata_normalized",
+                "handler": "com.walmart.labs.search.data.handler.impl.pcf.variant.PCFVariantSummaryNodeHandler_VariantAttributeValueRanks",
+                "properties": {
+                  "target_name": "variant_attribute_value_ranks",
+                  "doc": {
+                    "id": 118
+                  }
+                }
+              },
+
+              {
+                "name": "meta",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonObjectNodeToMapHandler",
+                "children": [
+                  {
+                    "name": "source_system",
+                    "handler": "com.walmart.labs.search.data.handler.impl.JsonTextNodeToStringHandler",
+                    "properties": {
+                      "target_name": "source_system",
+                      "doc": {
+                        "id": 39
+                      }
+                    }
+                  }
+                ]
+              },
+
+              {
+                "name": "product_attributes",
+                "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFJsonObjectNodeToStringHandler_PCSAttributes",
+                "children": [
+
+                  {
+                    "name": "musician",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "artist_name",
+                      "doc": {
+                        "id": 41
+                      }
+                    }
+                  },
+                  {
+                    "name": "bundle_type",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "bundle_type",
+                      "doc": {
+                        "id": 42
+                      }
+                    }
+                  },
+                  {
+                    "name": "manufacturer_suggested_retail_price",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToNumericStringHandler",
+                    "properties": {
+                      "target_name": "base_item_price",
+                      "doc": {
+                        "id": 43
+                      }
+                    }
+                  },
+                  {
+                    "name": "brand",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "brand",
+                      "doc": {
+                        "id": 44
+                      }
+                    }
+                  },
+                  {
+                    "name": "average_customer_rating",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "customer_rating",
+                      "doc": {
+                        "id": 45
+                      }
+                    }
+                  },
+                  {
+                    "name": "director",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "director",
+                      "doc": {
+                        "id": 46
+                      }
+                    }
+                  },
+                  {
+                    "name": "esrb_rating",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "esrb",
+                      "doc": {
+                        "id": 47
+                      }
+                    }
+                  },
+                  {
+                    "name": "literary_genre",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "fiction_non_fiction",
+                      "doc": {
+                        "id": 48
+                      }
+                    }
+                  },
+                  {
+                    "name": "format",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "format_t",
+                      "doc": {
+                        "id": 49
+                      }
+                    }
+                  },
+                  {
+                    "name": "gender",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "gender",
+                      "doc": {
+                        "id": 50
+                      }
+                    }
+                  },
+                  {
+                    "name": "is_always_show",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "is_always_show",
+                      "doc": {
+                        "id": 51
+                      }
+                    }
+                  },
+                  {
+                    "name": "number_of_cust_ratings",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "num_reviews",
+                      "doc": {
+                        "id": 52
+                      }
+                    }
+                  },
+                  {
+                    "name": "isbn-13",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "isbn",
+                      "doc": {
+                        "id": 53
+                      }
+                    }
+                  },
+                  {
+                    "name": "isbn-13",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler_ISBN10",
+                    "properties": {
+                      "target_name": "isbn10",
+                      "doc": {
+                        "id": 54
+                      }
+                    }
+                  },
+                  {
+                    "name": "isbn-13",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler_ISBNAll",
+                    "properties": {
+                      "target_name": "isbn_all",
+                      "doc": {
+                        "id": 213
+                      }
+                    }
+                  },
+                  {
+                    "name": "item_class_id",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "item_class_id",
+                      "doc": {
+                        "id": 55
+                      }
+                    }
+                  },
+                  {
+                    "name": "item_type",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "item_type",
+                      "doc": {
+                        "id": 56
+                      }
+                    }
+                  },
+                  {
+                    "name": "record_label",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "label",
+                      "doc": {
+                        "id": 57
+                      }
+                    }
+                  },
+                  {
+                    "name": "languages",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "language_x",
+                      "doc": {
+                        "id": 58
+                      }
+                    }
+                  },
+                  {
+                    "name": "product_long_description",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "long_descr",
+                      "doc": {
+                        "id": 59
+                      }
+                    }
+                  },
+                  {
+                    "name": "model",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "model_num",
+                      "doc": {
+                        "id": 60
+                      }
+                    }
+                  },
+                  {
+                    "name": "video_game_platform",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "platform",
+                      "doc": {
+                        "id": 61
+                      }
+                    }
+                  },
+                  {
+                    "name": "primary_shelf",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler_PrimaryShelf",
+                    "vertical_specific": true,
+                    "2": {
+                      "vertical_id": "2",
+                      "source_name": "karf_primary_shelf_path_id"
+                    },
+                    "properties": {
+                      "target_name": "primary_category_path",
+                      "doc": {
+                        "id": 62
+                      }
+                    }
+                  },
+                  {
+                    "name": "publisher",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "publisher",
+                      "doc": {
+                        "id": 63
+                      }
+                    }
+                  },
+                  {
+                    "name": "mpaa_rating",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "rating",
+                      "doc": {
+                        "id": 64
+                      }
+                    }
+                  },
+                  {
+                    "name": "duration",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "running_time",
+                      "doc": {
+                        "id": 65
+                      }
+                    }
+                  },
+                  {
+                    "name": "product_medium_description",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "short_descr",
+                      "doc": {
+                        "id": 66
+                      }
+                    }
+                  },
+                  {
+                    "name": "series_title",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "series",
+                      "doc": {
+                        "id": 67
+                      }
+                    }
+                  },
+                  {
+                    "name": "shelf_description",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "search_descr",
+                      "doc": {
+                        "id": 68
+                      }
+                    }
+                  },
+                  {
+                    "name": "color",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "static_color",
+                      "doc": {
+                        "id": 69
+                      }
+                    }
+                  },
+                  {
+                    "name": "fit_type",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "fit_type",
+                      "doc": {
+                        "id": 224
+                      }
+                    }
+                  },
+                  {
+                    "name": "size",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "static_size",
+                      "doc": {
+                        "id": 70
+                      }
+                    }
+                  },
+                  {
+                    "name": "studio_and_production_company",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "studio_name",
+                      "doc": {
+                        "id": 71
+                      }
+                    }
+                  },
+                  {
+                    "name": "product_name",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "title",
+                      "doc": {
+                        "id": 72
+                      }
+                    }
+                  },
+                  {
+                    "name": "alternate_title",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "alternate_title",
+                      "doc": {
+                        "id": 157
+                      }
+                    }
+                  },
+                  {
+                    "name": "title",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "main_title",
+                      "doc": {
+                        "id": 158
+                      }
+                    }
+                  },
+                  {
+                    "name": "product_url_text",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "walmart_canonical_url",
+                      "doc": {
+                        "id": 73
+                      }
+                    }
+                  },
+                  {
+                    "name": "new",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToBooleanStringHandler",
+                    "properties": {
+                      "target_name": "is_new",
+                      "doc": {
+                        "id": 74
+                      }
+                    }
+                  },
+                  {
+                    "name": "special_buy",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToBooleanStringHandler",
+                    "properties": {
+                      "target_name": "is_special_buy",
+                      "doc": {
+                        "id": 75
+                      }
+                    }
+                  },
+                  {
+                    "name": "as_advertised",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToBooleanStringHandler",
+                    "properties": {
+                      "target_name": "is_as_advertised",
+                      "doc": {
+                        "id": 76
+                      }
+                    }
+                  },
+                  {
+                    "name": "is_searchable",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "is_searchable",
+                      "doc": {
+                        "id": 77
+                      }
+                    }
+                  },
+                  {
+                    "name": "original_item_id",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "qarth_original_item_id",
+                      "doc": {
+                        "id": 78
+                      }
+                    }
+                  },
+                  {
+                    "name": "item_id",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "qarth_item_id",
+                      "doc": {
+                        "id": 79
+                      }
+                    }
+                  },
+                  {
+                    "name": "multipack_quantity",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "multipack_quantity",
+                      "doc": {
+                        "id": 130
+                      }
+                    }
+                  },
+                  {
+                    "name": "count_per_pack",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "count_per_pack",
+                      "doc": {
+                        "id": 131
+                      }
+                    }
+                  },
+                  {
+                    "name": "personalizable",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler_PersonalizationUrl",
+                    "properties": {
+                      "target_name": "personalization_url",
+                      "doc": {
+                        "id": 108
+                      }
+                    }
+                  },
+                  {
+                    "name": "part_terminology_id",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "part_terminology_id",
+                      "doc": {
+                        "id": 143
+                      }
+                    }
+                  },
+                  {
+                    "name": "aaia_brand_id",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "aaia_brand_id",
+                      "doc": {
+                        "id": 144
+                      }
+                    }
+                  },
+                  {
+                    "name": "manufacturer_part_number",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "manufacturer_part_number",
+                      "doc": {
+                        "id": 145
+                      }
+                    }
+                  },
+                  {
+                    "name": "global_product_type",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "global_product_type",
+                      "doc": {
+                        "id": 149
+                      }
+                    }
+                  },
+                  {
+                    "name": "global_product_type",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler_GrootNamePath",
+                    "properties": {
+                      "target_name": "groot_name_path",
+                      "doc": {
+                        "id": 199
+                      }
+                    }
+                  },
+      
+                  {
+                    "name": "search_keywords",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "search_keywords",
+                      "doc": {
+                        "id": 123
+                      }
+                    }
+                  },
+                  {
+                    "name": "actors",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "actor",
+                      "doc": {
+                        "id": 80
+                      }
+                    }
+                  },
+                  {
+                    "name": "age_range",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "age_range",
+                      "doc": {
+                        "id": 81
+                      }
+                    }
+                  },
+                  {
+                    "name": "awards_received",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "awards",
+                      "doc": {
+                        "id": 82
+                      }
+                    }
+                  },
+                  {
+                    "name": "track_listing",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "song",
+                      "doc": {
+                        "id": 83
+                      }
+                    }
+                  },
+                  {
+                    "name": "author",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToStringHandler_CombinedAuthor",
+                    "properties": {
+                      "target_name": "combined_author",
+                      "doc": {
+                        "id": 84
+                      }
+                    }
+                  },
+                  {
+                    "name": "all_shelves",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToStringHandler_AllShelves",
+                    "vertical_specific": true,
+                    "2": {
+                      "vertical_id": "2",
+                      "source_name": "karf_all_shelves"
+                    },
+                    "properties": {
+                      "target_name": "shelf_ids",
+                      "doc": {
+                        "id": 85
+                      }
+                    }
+                  },
+                  {
+                    "name": "product_type",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "product_type",
+                      "doc": {
+                        "id": 86
+                      }
+                    }
+                  },
+                  {
+                    "name": "product_type",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "pt_family",
+                      "doc": {
+                        "id": 167
+                      }
+                    }
+                  },
+                  {
+                    "name": "product_type",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "pt_category",
+                      "doc": {
+                        "id": 168
+                      }
+                    }
+                  },
+                  {
+                    "name": "product_type",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler_Id",
+                    "properties": {
+                      "target_name": "product_type_id",
+                      "doc": {
+                        "id": 204
+                      }
+                    }
+                  },
+                  {
+                    "name": "dietary_method",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "dietary_method",
+                      "doc": {
+                        "id": 150
+                      }
+                    }
+                  },
+                  {
+                    "name": "food_form",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "food_form",
+                      "doc": {
+                        "id": 151
+                      }
+                    }
+                  },
+                  {
+                    "name": "allergens",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "allergens",
+                      "doc": {
+                        "id": 152
+                      }
+                    }
+                  },
+                  {
+                    "name": "flavor",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "flavor",
+                      "doc": {
+                        "id": 153
+                      }
+                    }
+                  },
+                  {
+                    "name": "container_type",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "container_type",
+                      "doc": {
+                        "id": 154
+                      }
+                    }
+                  },
+                  {
+                    "name": "dietary_need",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "dietary_need",
+                      "doc": {
+                        "id": 155
+                      }
+                    }
+                  },
+                  {
+                    "name": "allergens_not_contained",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFMultiValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "allergens_not_contained",
+                      "doc": {
+                        "id": 156
+                      }
+                    }
+                  },
+
+                  {
+                    "name": "walmart_to_go_eligible",
+                    "handler": "com.walmart.labs.search.data.handler.impl.custom.HardCodedBooleanStringFalseHandler",
+                    "properties": {
+                      "target_name": "is_wmtg_eligible",
+                      "doc": {
+                        "id": 87
+                      }
+                    }
+                  },
+                  {
+                    "name": "sku_id",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "wmtg_skuid",
+                      "doc": {
+                        "id": 88
+                      }
+                    }
+                  },
+                  {
+                    "name": "karf_maximum_order_quantity",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "wmtg_max_order_quantity",
+                      "doc": {
+                        "id": 112
+                      }
+                    }
+                  },
+                  {
+                    "name": "price_per_unit_quantity",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "wmtg_price_per_unit_quantity",
+                      "doc": {
+                        "id": 113
+                      }
+                    }
+                  },
+                  {
+                    "name": "karf_maximum_quantity_factor",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "wmtg_max_quantity_factor",
+                      "doc": {
+                        "id": 114
+                      }
+                    }
+                  },
+                  {
+                    "name": "karf_average_maximum_quantity_factor",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "wmtg_avg_max_quantity_factor",
+                      "doc": {
+                        "id": 115
+                      }
+                    }
+                  },
+                  {
+                    "name": "karf_sales_unit",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "wmtg_sales_unit",
+                      "doc": {
+                        "id": 116
+                      }
+                    }
+                  },
+                  {
+                    "name": "price_per_unit_uom",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "wmtg_price_per_unit_uom",
+                      "doc": {
+                        "id": 117
+                      }
+                    }
+                  },
+
+                  {
+                    "name": "wheel_diameter",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "tire_diameter",
+                      "doc": {
+                        "id": 90
+                      }
+                    }
+                  },
+                  {
+                    "name": "tire_load_index",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler_TireLoadIndex",
+                    "properties": {
+                      "target_name": "tire_load_index",
+                      "doc": {
+                        "id": 91
+                      }
+                    }
+                  },
+                  {
+                    "name": "load_index_display_value",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "tire_load_index_translation",
+                      "doc": {
+                        "id": 92
+                      }
+                    }
+                  },
+                  {
+                    "name": "tire_size",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "tire_overall_size",
+                      "doc": {
+                        "id": 93
+                      }
+                    }
+                  },
+                  {
+                    "name": "tire_aspect_ratio",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "tire_ratio",
+                      "doc": {
+                        "id": 94
+                      }
+                    }
+                  },
+                  {
+                    "name": "tire_sidewall_style",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "tire_sidewall",
+                      "doc": {
+                        "id": 95
+                      }
+                    }
+                  },
+                  {
+                    "name": "tire_speed_rating",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "tire_speed_rating",
+                      "doc": {
+                        "id": 96
+                      }
+                    }
+                  },
+                  {
+                    "name": "speed_rating_translation",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "tire_speed_rating_translation",
+                      "doc": {
+                        "id": 97
+                      }
+                    }
+                  },
+                  {
+                    "name": "tire_temperature_rating",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "tire_temperature",
+                      "doc": {
+                        "id": 98
+                      }
+                    }
+                  },
+                  {
+                    "name": "warranty_length",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "tire_threadwear_warranty",
+                      "doc": {
+                        "id": 99
+                      }
+                    }
+                  },
+                  {
+                    "name": "tire_traction_rating",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "tire_traction",
+                      "doc": {
+                        "id": 100
+                      }
+                    }
+                  },
+                  {
+                    "name": "vehicle_type@@vehicle_sub_type",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler_TireType",
+                    "properties": {
+                      "target_name": "tire_type",
+                      "doc": {
+                        "id": 101
+                      }
+                    }
+                  },
+                  {
+                    "name": "tire_season",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "tire_weather",
+                      "doc": {
+                        "id": 102
+                      }
+                    }
+                  },
+                  {
+                    "name": "tire_width",
+                    "handler": "com.walmart.labs.search.data.handler.impl.pcf.PCFSingleValuedJsonNodeToStringHandler",
+                    "properties": {
+                      "target_name": "tire_width",
+                      "doc": {
+                        "id": 103
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "derived_attributes",
+                "handler": "com.walmart.labs.search.data.handler.impl.JsonObjectNodeToMapHandler",
+                "children": [
+                  {
+                    "name": "average_sold_by_weight",
+                    "handler": "com.walmart.labs.search.data.handler.impl.JsonObjectNodeToStringHandler",
+                    "properties": {
+                      "target_name": "average_sold_by_weight",
+                      "doc": {
+                        "id": 211
+                      }
+                    }
+                  },
+                  {
+                    "name": "maximum_sold_by_weight",
+                    "handler": "com.walmart.labs.search.data.handler.impl.JsonObjectNodeToStringHandler",
+                    "properties": {
+                      "target_name": "maximum_sold_by_weight",
+                      "doc": {
+                        "id": 212
+                      }
+                    }
+                  },
+                  {
+                    "name": "sales_unit",
+                    "handler": "com.walmart.labs.search.data.handler.impl.JsonObjectNodeToStringHandler",
+                    "properties": {
+                      "target_name": "sales_unit",
+                      "doc": {
+                        "id": 205
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "grocery_eligibility",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToStringHandler_WmtgStoreIds",
+            "properties": {
+              "target_name": "wmtg_store_ids",
+              "doc": {
+                "id": 89
+              }
+            }
+          },
+          {
+            "name": "HOUSE_KEEPING_FIELD",
+            "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+            "properties": {
+              "target_name": "variants_availability",
+              "doc": {
+                "id": 174
+              }
+            }
+          },
+          {
+            "name": "HOUSE_KEEPING_FIELD",
+            "handler": "com.walmart.labs.search.data.handler.impl.HouseKeepingFieldStringHandler",
+            "properties": {
+              "target_name": "pgls_variants_availability",
+              "doc": {
+                "id": 209
+              }
+            }
+          }
+        ]
+      },
+      "flat_store_product": {
+        "name": "flat_store_product",
+        "handler": "com.walmart.labs.search.data.handler.TransformationHandler",
+        "properties": {
+          "target_name": "flat_store_product",
+          "namespace": "com.walmart.labs.search.data.avro"
+        },
+        "children": [
+          {
+            "name": "store_price",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToMapHandler_StorePriceV1",
+            "properties": {
+              "target_name": "store_price",
+              "doc": {
+                "id": 132
+              }
+            }
+          },
+          {
+            "name": "store_price",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToArrayHandler_SpecialOffersStorePriceV1",
+            "properties": {
+              "target_name": "store_special_offers",
+              "doc": {
+                "id": 166
+              },
+              "handlerConfigs": {
+                "field_map": {
+                  "rollback_store_ids": "_rb",
+                  "clearance_store_ids": "_cl"
+                }
+              }
+            }
+          },
+          {
+            "name": "store_price",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToMapHandler_GlassStorePrice",
+            "properties": {
+              "target_name": "pgls_store_price",
+              "doc": {
+                "id": 202
+              }
+            }
+          },
+          {
+            "name": "store_price",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToArrayHandler_SpecialOffersStorePriceV1",
+            "properties": {
+              "target_name": "pgls_store_special_offers",
+              "doc": {
+                "id": 203
+              },
+              "handlerConfigs": {
+                "field_map": {
+                  "rollback_store_ids": "_rb",
+                  "clearance_store_ids": "_cl"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "postProcessingHandlerChain": {
+      "name": "post_processor_main",
+      "handler": "com.walmart.labs.search.data.handler.TransformationHandler",
+      "children": [
+        {
+          "name": "availability_status",
+          "handler": "com.walmart.labs.search.data.handler.impl.custom.PostProcessorHandler_ItemTenant",
+          "properties": {
+            "target_name": "tenant",
+            "doc": {
+              "id": 161
+            }
+          }
+        },
+        {
+          "name": "is_wmtg_only",
+          "handler": "com.walmart.labs.search.data.handler.impl.custom.PostProcessorHandler_isWMTGOnly",
+          "properties": {
+            "target_name": "is_wmtg_only",
+            "doc": {
+              "id": 104
+            }
+          }
+        },
+        {
+          "name": "store_put_eligible",
+          "handler": "com.walmart.labs.search.data.handler.impl.custom.PostProcessorHandler_storePutEligibleMap",
+          "properties": {
+            "target_name": "store_put_eligible_map",
+            "doc": {
+              "id": 142
+            }
+          }
+        },
+        {
+          "name": "is_media",
+          "handler": "com.walmart.labs.search.data.handler.impl.custom.PostProcessorHandler_isMedia",
+          "properties": {
+            "target_name": "is_media",
+            "doc": {
+              "id": 105
+            }
+          }
+        },
+        {
+          "name": "special_offers",
+          "handler": "com.walmart.labs.search.data.handler.impl.custom.PostProcessorHandler_SpecialOffers",
+          "properties": {
+            "target_name": "special_offers",
+            "doc": {
+              "id": 106
+            }
+          }
+        },
+        {
+          "name": "oos_inclusion_flag",
+          "handler": "com.walmart.labs.search.data.handler.impl.custom.PostProcessorHandler_OOSInclusionFlag",
+          "properties": {
+            "target_name": "oos_inclusion_flag",
+            "doc": {
+              "id": 107
+            }
+          }
+        },
+        {
+          "name": "mode_price",
+          "handler": "com.walmart.labs.search.data.handler.impl.custom.PostProcessorHandler_ModePrice",
+          "properties": {
+            "target_name": "mode_price",
+            "doc": {
+              "id": 133
+            }
+          }
+        },
+        {
+          "name": "glass_enabled",
+          "handler": "com.walmart.labs.search.data.handler.impl.custom.GlassRollupHandler.PostProcessingHandlerForGlassItems",
+          "properties": {
+            "target_name": "pgls_id",
+            "doc": {
+              "id": 200
+            }
+          }
+        },
+        {
+          "name": "glass_enabled",
+          "handler": "com.walmart.labs.search.data.handler.impl.custom.GlassRollupHandler.PostProcessingHandlerForGlassSpecialOffer",
+          "properties": {
+            "target_name": "pgls_special_offers",
+            "doc": {
+              "id": 208
+            }
+          }
+        }
+      ]
+    },
+    "glassProcessingHandlerChain": {
+      "flat_store_listings": {
+        "name": "flat_store_listings",
+        "handler": "com.walmart.labs.search.data.handler.TransformationHandler",
+        "properties": {
+          "target_name": "uber_offer_listing",
+          "namespace": "com.walmart.labs.search.data.avro"
+        },
+        "children": [
+          {
+            "name": "store_inventory",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToArrayHandler_GlassIMSStoreAvailability",
+            "properties": {
+              "target_name": "pgls_unique_store_ids",
+              "doc": {
+                "id": 198
+              }
+            }
+          },
+          {
+            "name": "store_offer_listing",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToArrayHandler_OfferListing",
+            "properties": {
+              "target_name": "pgls_offer_listing",
+              "doc": {
+                "id": 175
+              }
+            }
+          },
+          {
+            "name": "store_logistics",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToArrayHandler_GlassStoreEligibility",
+            "properties": {
+              "target_name": "pgls_pickup_store_ids",
+              "doc": {
+                "id": 176
+              }
+            }
+          },
+          {
+            "name": "store_logistics",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToArrayHandler_GlassStoreEligibility",
+            "properties": {
+              "target_name": "pgls_delivery_store_ids",
+              "doc": {
+                "id": 177
+              }
+            }
+          },
+          {
+            "name": "store_logistics",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToArrayHandler_GlassStoreEligibilitySpeed",
+            "properties": {
+              "target_name": "pgls_pickup_2_hour_store_ids",
+              "doc": {
+                "id": 178
+              }
+            }
+          },
+          {
+            "name": "store_logistics",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToArrayHandler_GlassStoreEligibilitySpeed",
+            "properties": {
+              "target_name": "pgls_delivery_2_hour_store_ids",
+              "doc": {
+                "id": 179
+              }
+            }
+          },
+          {
+            "name": "store_logistics",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToArrayHandler_GlassStoreEligibilitySpeed",
+            "properties": {
+              "target_name": "pgls_pickup_same_day_store_ids",
+              "doc": {
+                "id": 180
+              }
+            }
+          },
+          {
+            "name": "store_logistics",
+            "handler": "com.walmart.labs.search.data.handler.impl.custom.CassandraColumnMapToArrayHandler_GlassStoreEligibilitySpeed",
+            "properties": {
+              "target_name": "pgls_delivery_same_day_store_ids",
+              "doc": {
+                "id": 181
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
